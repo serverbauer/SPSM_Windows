@@ -2,7 +2,8 @@
 
 - 👋 Hi, we are @serverbauer and @einfach_oli11
 
-- 📫 How to reach me:
+
+- 📫 How to reach us:
 - Discord: Serverbauer#8515
 - Discord: • Oliver •#0001
 

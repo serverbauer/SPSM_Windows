@@ -8,6 +8,8 @@ import java.lang.management.ManagementFactory;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.sun.jna.Library;
+import com.sun.jna.Native;
 import com.sun.management.OperatingSystemMXBean;
 
 /**
@@ -24,7 +26,14 @@ import com.sun.management.OperatingSystemMXBean;
  * @author Serverbauer | GermanRPGBrothers.eu Inhaber and Oliver
  */
 
-public class Main {
+public class Main_JNA {
+
+    public interface CLibrary extends Library {
+        Main_JNA.CLibrary INSTANCE = (Main_JNA.CLibrary) Native.loadLibrary("kernel32", Main_JNA.CLibrary.class);
+
+        // Diese Methode gibt die aktuelle GPU-Auslastung des Systems in Prozent zurück.
+        int GetGPULoad();
+    }
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
             // Bean für den Betriebssystemmanager abrufen
@@ -45,6 +54,9 @@ public class Main {
                 // CPU-Auslastung ermitteln
                 double cpuLoad = osBean.getSystemCpuLoad();
 
+                // GPU-Auslastung ermitteln
+                int gpuload = Main_JNA.CLibrary.INSTANCE.GetGPULoad();
+
                 // RAM-Auslastung ermitteln
                 long totalMemory = osBean.getTotalPhysicalMemorySize();
 
@@ -55,7 +67,7 @@ public class Main {
                 long totalNetwork = osBean.getTotalSwapSpaceSize();
 
                 // Antwort an den Client senden
-                out.println("Der request wurde empfangen. Die CPU-Auslastung beträgt: " + cpuLoad + " Die RAM-Auslastung beträgt: " + totalMemory + " Die Disk-Auslastung beträgt: " + freeDiskSpace + " Die Netzwerk-Auslastung beträgt: " + totalNetwork);
+                out.println("Der request wurde empfangen. Die CPU-Auslastung beträgt: " + cpuLoad + "Die GPU-Auslastung beträgt: " + gpuload + " Die RAM-Auslastung beträgt: " + totalMemory + " Die Disk-Auslastung beträgt: " + freeDiskSpace + " Die Netzwerk-Auslastung beträgt: " + totalNetwork);
             }
         }
         catch (IOException e) {
