@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7af8af4-944c-4c57-b96e-1e3d19be3aa9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Main_JNA_Beta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Old_Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main_JNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Main_JNA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670789794236</updated>
       <workItem from="1670789795464" duration="7446000" />
-      <workItem from="1670871505305" duration="6966000" />
+      <workItem from="1670871505305" duration="7509000" />
     </task>
     <servers />
   </component>
