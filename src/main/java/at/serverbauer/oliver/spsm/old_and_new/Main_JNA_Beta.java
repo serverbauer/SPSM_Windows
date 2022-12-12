@@ -1,6 +1,5 @@
-package at.serverbauer.oliver.spsm;
+package at.serverbauer.oliver.spsm.old_and_new;
 
-import at.serverbauer.oliver.spsm.old_and_new.Main_JNA_Beta;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.management.OperatingSystemMXBean;
@@ -14,58 +13,47 @@ import java.util.Properties;
 
 /**
  * JavaDoc this file!
+ *
  * Created: 12.12.2022
- * 21:00
- * <p>
+ * 20:00
  * SPSM_Windows
  * at.serverbauer.oliver.spsm
  *
- * @author Serverbauer | GermanRPGBrothers.eu Inhaber
- */
-public class Main {
+ * @author Serverbauer | GermanRPGBrothers.eu Inhaber and Oliver
+ **/
+
+public class Main_JNA_Beta {
 
     public interface CLibrary extends Library {
-        Main.CLibrary INSTANCE = (Main.CLibrary) Native.loadLibrary("kernel32", Main.CLibrary.class);
+        Main_JNA_Beta.CLibrary INSTANCE = (Main_JNA_Beta.CLibrary) Native.loadLibrary("kernel32", Main_JNA_Beta.CLibrary.class);
 
         // Diese Methode gibt die aktuelle GPU-Auslastung des Systems in Prozent zurück.
         int GetGPULoad();
     }
     public static void main(String[] args) throws IOException {
 
+        //Für die Config
         Properties config = new Properties();
 
-        int portdefault = 5000;
-
-        try {
-            String configFile = "Config/config.properties";
-
-            config.load(new FileInputStream(configFile));
-
-        } catch (IOException e) {
-            File configFile = new File("Config/config.properties");
-            configFile.getParentFile().mkdirs();
-            configFile.createNewFile();
-            e.printStackTrace();
-        } finally {
-            config.setProperty("port", String.valueOf(portdefault));
-            config.setProperty("ipAddress", "127.0.0.1");
-            try (FileOutputStream out = new FileOutputStream("Config/config.properties")) {
-                config.store(out, "Config");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        /*
-        //Für die Config
-
         //Laden der Config
-        try (FileInputStream in = new FileInputStream("Config/config.properties")) {
+        /*
+        try (FileInputStream in = new FileInputStream("D:/SPSM/SPSM_Windows/target/Config/config.properties")) {
             config.load(in);
         } catch (IOException e) {
             e.printStackTrace();
         }
          */
+
+        // Falls die Config nicht existiert, wird sie erstellt
+        if (!new File("D:/SPSM/SPSM_Windows/target/Config/config.properties").exists()) {
+            config.setProperty("Port", "5000");
+            config.setProperty("IP", "127.0.0.1");
+            try (FileOutputStream out = new FileOutputStream("D:/SPSM/SPSM_Windows/target/Config/config.properties")) {
+                config.store(out, "Config");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //Port aus der Config laden
         int port = Integer.parseInt(config.getProperty("port"));
@@ -93,7 +81,7 @@ public class Main {
             double cpuLoad = osBean.getSystemCpuLoad();
 
             // GPU-Auslastung ermitteln
-            int gpuload = CLibrary.INSTANCE.GetGPULoad();
+            int gpuload = Main_JNA_Beta.CLibrary.INSTANCE.GetGPULoad();
 
             // RAM-Auslastung ermitteln
             long totalMemory = osBean.getTotalPhysicalMemorySize();

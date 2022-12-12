@@ -1,4 +1,4 @@
-package at.serverbauer.oliver.spsm;
+package at.serverbauer.oliver.spsm.old_and_new;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,17 +14,14 @@ import com.sun.management.OperatingSystemMXBean;
 
 /**
  * JavaDoc this file!
- * Created: 26.01.2021
- * 13:54
- * 26.01.2021
- * <p>
- * 13:54
- * <p>
+ *
+ * Created: 11.12.2022
+ * 20:00
  * SPSM_Windows
  * at.serverbauer.oliver.spsm
  *
  * @author Serverbauer | GermanRPGBrothers.eu Inhaber and Oliver
- */
+ **/
 
 public class Main_JNA {
 

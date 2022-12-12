@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7af8af4-944c-4c57-b96e-1e3d19be3aa9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main_JNA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Main_JNA_Beta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Old_Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/Main_JNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/serverbauer/oliver/spsm/old_and_new/Main_JNA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,23 +48,43 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Users/hessf/OneDrive/Desktop/alles/Aquatica/Aquatica",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="at.serverbauer.oliver.spsm" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="at.serverbauer.oliver.spsm.Main" />
       <module name="SPSM_Windows" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="at.serverbauer.oliver.spsm.*" />
+          <option name="PATTERN" value="at.serverbauer.oliver.spsm.old_and_new.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main_JNA_Beta" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="at.serverbauer.oliver.spsm.old_and_new.Main_JNA_Beta" />
+      <module name="SPSM_Windows" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.serverbauer.oliver.spsm.old_and_new.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -73,6 +95,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main_JNA_Beta" />
       </list>
     </recent_temporary>
   </component>
@@ -84,11 +107,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670789794236</updated>
-      <workItem from="1670789795464" duration="7182000" />
+      <workItem from="1670789795464" duration="7446000" />
+      <workItem from="1670871505305" duration="6966000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NumberFormatException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
