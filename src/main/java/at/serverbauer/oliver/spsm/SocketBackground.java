@@ -1,4 +1,4 @@
-package at.serverbauer.oliver.spsm.old_and_new;
+package at.serverbauer.oliver.spsm;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
@@ -13,45 +13,44 @@ import java.util.Properties;
 
 /**
  * JavaDoc this file!
- *
- * Created: 12.12.2022
- * 20:00
+ * Created: 13.12.2022
+ * 22:13
+ * <p>
  * SPSM_Windows
  * at.serverbauer.oliver.spsm
  *
- * @author Serverbauer | GermanRPGBrothers.eu Inhaber and Oliver
- **/
-
-public class Main_JNA_Beta {
+ * @author Serverbauer | GermanRPGBrothers.eu Inhaber
+ */
+public class SocketBackground extends Thread {
 
     public interface CLibrary extends Library {
-        Main_JNA_Beta.CLibrary INSTANCE = (Main_JNA_Beta.CLibrary) Native.loadLibrary("kernel32", Main_JNA_Beta.CLibrary.class);
+        SocketBackground.CLibrary INSTANCE = (SocketBackground.CLibrary) Native.loadLibrary("kernel32", SocketBackground.CLibrary.class);
 
         // Diese Methode gibt die aktuelle GPU-Auslastung des Systems in Prozent zurück.
         int GetGPULoad();
     }
-    public static void main(String[] args) throws IOException {
 
-        //Für die Config
+    public void run() {
         Properties config = new Properties();
 
-        //Laden der Config
-        /*
-        try (FileInputStream in = new FileInputStream("D:/SPSM/SPSM_Windows/target/Config/config.properties")) {
-            config.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
+        int portdefault = 5000;
 
-        // Falls die Config nicht existiert, wird sie erstellt
-        if (!new File("D:/SPSM/SPSM_Windows/target/Config/config.properties").exists()) {
-            config.setProperty("Port", "5000");
-            config.setProperty("IP", "127.0.0.1");
-            try (FileOutputStream out = new FileOutputStream("D:/SPSM/SPSM_Windows/target/Config/config.properties")) {
-                config.store(out, "Config");
+        File configFile = new File("Config/config.properties");
+
+        if (configFile.exists()) {
+            try {
+                config.load(new FileInputStream(configFile));
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        } else {
+            configFile.getParentFile().mkdirs();
+            try {
+                configFile.createNewFile();
+                config.setProperty("port", String.valueOf(portdefault));
+                config.setProperty("ipAddress", "127.0.0.1");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         }
 
@@ -65,10 +64,20 @@ public class Main_JNA_Beta {
         System.out.println("Folgende Daten in der Config gefunden:");
         System.out.println("Port: " + port + " | IP: " + ipAddress);
 
-        ServerSocket serverSocket = new ServerSocket(port, 50, InetAddress.getByName(ipAddress));
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(port, 50, InetAddress.getByName(ipAddress));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Warten auf eine Verbindung vom Master
-        Socket masterSocket = serverSocket.accept();
+        Socket masterSocket = null;
+        try {
+            masterSocket = serverSocket.accept();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Bean für den Betriebssystemmanager abrufen
         OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
@@ -81,7 +90,7 @@ public class Main_JNA_Beta {
             double cpuLoad = osBean.getSystemCpuLoad();
 
             // GPU-Auslastung ermitteln
-            int gpuload = Main_JNA_Beta.CLibrary.INSTANCE.GetGPULoad();
+            int gpuload = SocketBackground.CLibrary.INSTANCE.GetGPULoad();
 
             // RAM-Auslastung ermitteln
             long totalMemory = osBean.getTotalPhysicalMemorySize();
@@ -94,8 +103,17 @@ public class Main_JNA_Beta {
             long totalNetwork = osBean.getTotalSwapSpaceSize();
 
             // Senden der CPU-Auslastung an den Master
-            DataOutputStream out = new DataOutputStream(masterSocket.getOutputStream());
-            out.writeDouble(cpuLoad + gpuload + totalMemory + freeDiskSpace + totalNetwork);
+            DataOutputStream out = null;
+            try {
+                out = new DataOutputStream(masterSocket.getOutputStream());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                out.writeDouble(cpuLoad + gpuload + totalMemory + freeDiskSpace + totalNetwork);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
